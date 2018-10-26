@@ -34,6 +34,20 @@
 
 
 </div>
+<div class="container">
+
+<div class="row">
+<?php
+
+// display the links to the pages
+for ($page=1;$page<=$data['num_pages'];$page++) {
+  echo '<a href="index.php?page=' . $page . '">' . $page . '</a> ';
+}
+
+?>
+
+</div>
+</div>
 
 
 </div>

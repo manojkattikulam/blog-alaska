@@ -9,13 +9,40 @@ class Pages extends Controller
 
     public function index()
     {
-        $posts = $this->postModel->getPosts();
-
         
+        
+        // define how many results you want per page
+        $results_per_page = 3;  
+
+        // find out the number of results stored in database
+        $number_of_results = $this->postModel->getArticlesCountPgn();
+
+        // determine number of total pages available
+        $number_of_pages = ceil($number_of_results/$results_per_page);
+
+        // determine which page number visitor is currently on
+            if (!isset($_GET['page'])) {
+                $page = 1;
+            } else {
+                $page = $_GET['page'];
+            }
+
+        // determine the sql LIMIT starting number for the results on the displaying page
+        $this_page_first_result = ($page-1)*$results_per_page;
+
+        // retrieve selected results from database and display them on page
+
+        $data = [
+            'a' => $this_page_first_result, 
+            'b' => $results_per_page 
+        ];
+        $postsPgn = $this->postModel->getArticlesPgn($data);
+
         $data = [
             'title' => 'Billet simple pour Alaska',
             'description' => 'par Jean Forteroche',
-            'posts' => $posts,
+            'posts' => $postsPgn,
+            'num_pages' => $number_of_pages
             
 
         ];

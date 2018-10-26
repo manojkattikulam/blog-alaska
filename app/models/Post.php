@@ -18,6 +18,25 @@ class Post
 
     }
 
+    public function getArticlesPgn($data)
+    {
+        $this->db->query('SELECT posts_id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation_fr FROM posts ORDER BY date_creation DESC LIMIT ' . $data['a'] . ',' . $data['b']);
+
+        $results = $this->db->resultSet();
+
+        return $results;
+
+    }
+    public function getArticlesCountPgn()
+    {
+        $this->db->query("SELECT * FROM posts");
+
+        $this->db->execute();
+
+        return $this->db->rowCount();
+
+    }
+
     public function getPostById($id)
     {
         $this->db->query('SELECT posts_id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y \') AS date_creation_fr FROM posts WHERE posts_id = :id');
@@ -161,18 +180,7 @@ class Post
         return $this->db->rowCount();
 
     }
-    public function getNumCommentsDepublierAdmin()
-    {
-        $this->db->query('SELECT * FROM comments WHERE comment_status = :depublier');
 
-        // Bind values
-        $this->db->bind(':depublier', 'Dépublier');
-
-        $this->db->execute();
-
-        return $this->db->rowCount();
-
-    }
 
     public function getNumCommentsPriorityAdmin()
     {
@@ -221,22 +229,7 @@ class Post
 
     }
 
-    public function depublierComment($id)
-    {
-
-        $this->db->query('UPDATE comments SET comment_status = :depublier WHERE comment_id = :id');
-        // Bind values
-        $this->db->bind(':id', $id);
-        $this->db->bind(':depublier', 'Dépublier');
-
-        // Execute
-        if ($this->db->execute()) {
-            return true;
-        } else {
-            return false;
-        }
-
-    }
+ 
 
     public function showAlls(){
 
