@@ -9,7 +9,7 @@
           <ul class="nav flex-column border border-secondary">
             <h4 class="bg-secondary p-3"><a class="text-white " href="<?php echo URLROOT; ?>/admins/index">ADMIN</a></h4>
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo URLROOT; ?>/admins/add">Ajouter(<span class="numCount"><?php echo $data['num_posts']; ?></span>)</a>
+                <a class="nav-link" href="<?php echo URLROOT; ?>/admins/add">Ajouter</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo URLROOT; ?>/admins/edit">Modifier</a>
@@ -42,7 +42,7 @@
       <th scope="col">Statut</th>
       <th scope="col">Priority</th>
       <th scope="col">Publier</th>
-      <th scope="col">Dépublier</th>
+      
       <th scope="col">Supprimer</th>
     </tr>
   </thead>
@@ -54,9 +54,9 @@
       <td><?php echo $com->comment_text; ?></td>
       <td><?php echo $com->comment_date_fr; ?></td>
 
-      <?php if ($com->comment_status == 'Publier') {?>
+      <?php if ($com->comment_status == 'Publié') {?>
             <td class="text-success"><?php echo $com->comment_status; ?></td>
-      <?php } else if ($com->comment_status == 'Dépublier') {?>
+      <?php } else if ($com->comment_status == 'Non Publié') {?>
             <td class="text-danger"><?php echo $com->comment_status; ?></td>
       <?php }?>
 
@@ -67,15 +67,6 @@
           <input type="submit" value="Publier" class="btn btn-success">
         </form>
       </td>
-
-      <td>
-        <form action="<?php echo URLROOT; ?>/admins/depublierComments/<?php echo $com->comment_id; ?>" method="post">
-          <input type="submit" value="Dépublier" class="btn btn-warning">
-        </form>
-      </td>
-
-
-
       <td>
         <form action="<?php echo URLROOT; ?>/admins/deleteComments/<?php echo $com->comment_id; ?>" method="post">
           <input type="submit" value="Supprimer" class="btn btn-danger">

@@ -105,6 +105,22 @@ class Pages extends Controller
 
         }
 
+        
+
+    }
+
+    public function showAll(){
+
+        $all = $this->postModel->showAlls();
+
+        $data = [
+
+            'mixpost' => $all
+        ];
+
+
+        $this->view('pages/showAll', $data);
+
     }
 
 }

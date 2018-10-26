@@ -86,7 +86,7 @@ class Post
 
         // Bind values
         $this->db->bind(':id', $id);
-        $this->db->bind(':publier', 'Publier');
+        $this->db->bind(':publier', 'Publié');
 
         $results = $this->db->resultSet();
 
@@ -138,19 +138,23 @@ class Post
 
     public function getNumCommentsAdmin()
     {
-        $this->db->query('SELECT * FROM comments');
+        $this->db->query("SELECT comment_status, comment_priority FROM comments WHERE comment_status = 'Non Publié' ");
 
         $this->db->execute();
 
         return $this->db->rowCount();
 
     }
+
+    
+
+
     public function getNumCommentsPublierAdmin()
     {
         $this->db->query('SELECT * FROM comments WHERE comment_status = :publier');
 
         // Bind values
-        $this->db->bind(':publier', 'Publier');
+        $this->db->bind(':publier', 'Publié');
 
         $this->db->execute();
 
@@ -175,7 +179,7 @@ class Post
         $this->db->query('SELECT * FROM comments WHERE comment_priority = :priority');
 
         // Bind values
-        $this->db->bind(':priority', 'priority');
+        $this->db->bind(':priority', 'Priorité');
 
         $this->db->execute();
 
@@ -205,8 +209,8 @@ class Post
         $this->db->query('UPDATE comments SET comment_status = :publier, comment_priority = :nothing WHERE comment_id = :id');
         // Bind values
         $this->db->bind(':id', $id);
-        $this->db->bind(':publier', 'Publier');
-        $this->db->bind(':nothing', null);
+        $this->db->bind(':publier', 'Publié');
+        $this->db->bind(':nothing','');
 
         // Execute
         if ($this->db->execute()) {
@@ -231,6 +235,22 @@ class Post
         } else {
             return false;
         }
+
+    }
+
+    public function showAlls(){
+
+        $this->db->query(
+            
+            'SELECT posts.titre, posts.contenu, comments.comment_author, comments.comment_text
+             FROM posts
+             INNER JOIN comments on posts.posts_id = comments.posts_id
+             ORDER BY comments.comment_author'
+        );
+
+        $results = $this->db->resultSet();
+
+        return $results;
 
     }
 

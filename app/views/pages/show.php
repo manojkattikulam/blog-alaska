@@ -57,7 +57,7 @@
         </div>
 
 
-          <input type="checkbox" name="priority" value="priority"> Signaler comme prioritaire<br>
+          <input type="checkbox" name="priority" value="Priorité"> Signaler comme prioritaire<br>
           <br><br>
 
 
