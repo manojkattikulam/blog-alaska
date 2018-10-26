@@ -16,7 +16,6 @@ class Admins extends Controller
         $numCounts = $this->postModel->getNumCommentsAdmin();
         $numCountsPosts = $this->postModel->getNumPostsAdmin();
         $numCountsPublier = $this->postModel->getNumCommentsPublierAdmin();
-        $numCountsDepublier = $this->postModel->getNumCommentsDepublierAdmin();
         $numCountsPriority = $this->postModel->getNumCommentsPriorityAdmin();
 
         $data = [
@@ -25,7 +24,6 @@ class Admins extends Controller
             'num_com' => $numCounts,
             'num_posts' => $numCountsPosts,
             'num_com_publier' => $numCountsPublier,
-            'num_com_depublier' => $numCountsDepublier,
             'num_com_priority' => $numCountsPriority,
         ];
 
