@@ -27,6 +27,7 @@ class Post
         return $results;
 
     }
+    
     public function getArticlesCountPgn()
     {
         $this->db->query("SELECT * FROM posts");

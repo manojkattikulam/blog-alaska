@@ -11,8 +11,9 @@
 
 <?php flash('post_message');?>
 
-  <a href="<?php echo URLROOT; ?>/pages" class="btn btn-light"><i class="fa fa-backward"></i>&nbsp;Retour</a>
-  <br><br>
+
+<button type="button" class="btn btn-success mb-3" onclick="goBack()"><i class="fa fa-backward"></i>&nbsp;Retour</button>
+
 
 
   <div class="card card-body mb-3">

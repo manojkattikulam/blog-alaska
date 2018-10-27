@@ -34,17 +34,21 @@
 
 
 </div>
-<div class="container">
+    <div class="container">
 
-<div class="row">
-<?php
+    <div class="col-md-6 float-right ">
+  
+      <ul class="pagination">
+        
+        <?php for ($page=1;$page<=$data['num_pages'];$page++) { ?>
+        
 
-// display the links to the pages
-for ($page=1;$page<=$data['num_pages'];$page++) {
-  echo '<a href="index.php?page=' . $page . '">' . $page . '</a> ';
-}
+            <li class="page-item "><a class="page-link " href="index.php?page=<?php echo $page; ?>"><?php echo $page; ?></a></li>
+           
+        <?php } ?>
 
-?>
+        </ul>
+    
 
 </div>
 </div>
