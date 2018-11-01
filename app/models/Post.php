@@ -20,14 +20,14 @@ class Post
 
     public function getArticlesPgn($data)
     {
-        $this->db->query('SELECT posts_id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation_fr FROM posts ORDER BY date_creation DESC LIMIT ' . $data['a'] . ',' . $data['b']);
+        $this->db->query('SELECT posts_id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation_fr FROM posts ORDER BY date_creation DESC LIMIT ' . $data['first_num'] . ',' . $data['last_num']);
 
         $results = $this->db->resultSet();
 
         return $results;
 
     }
-    
+
     public function getArticlesCountPgn()
     {
         $this->db->query("SELECT * FROM posts");

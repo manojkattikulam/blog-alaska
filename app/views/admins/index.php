@@ -13,7 +13,7 @@
 <div class="col-md-8 mt-5 ">
             <div>
                 <h1>
-                    <?php echo $data['title']; ?><br/> <span class="text-success"><?php echo $_SESSION['name']; ?> </span>
+                    <?php echo $data['title']; ?><br/> <span class="text-success"><?php echo $_SESSION['user_name']; ?> </span>
                 </h1>
                 <p>
                     <?php echo $data['description']; ?>

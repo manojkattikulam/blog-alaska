@@ -35,23 +35,24 @@
 
 </div>
     <div class="container">
+      <div class="row ">
+        <div class="col-md-8 col-md-offset-2 ">
+      
+          <ul class="pagination">
+            
+            <?php for ($page=1;$page<=$data['num_pages'];$page++) { ?>
+            
+            
 
-    <div class="col-md-6 float-right ">
-  
-      <ul class="pagination">
+                <li class="page-item "><a class="page-link " href="<?php echo URLROOT; ?>/index.php?page=<?php echo $page; ?>"><?php echo $page; ?></a></li>
+              
+            <?php } ?>
+
+            </ul>
         
-        <?php for ($page=1;$page<=$data['num_pages'];$page++) { ?>
-        
-
-            <li class="page-item "><a class="page-link " href="index.php?page=<?php echo $page; ?>"><?php echo $page; ?></a></li>
-           
-        <?php } ?>
-
-        </ul>
-    
-
-</div>
-</div>
+        </div>
+      </div>
+    </div>
 
 
 </div>

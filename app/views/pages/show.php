@@ -17,6 +17,7 @@
 
 
   <div class="card card-body mb-3">
+    
       <h2 class="text-success"><?php echo $data['titre']; ?></h2>
       <small class="mb-3 text-primary"><?php echo $data['date']; ?></small>
       <p><?php echo $data['contenu']; ?></p>
