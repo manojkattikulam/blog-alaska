@@ -16,6 +16,8 @@ class Post
 
         return $results;
 
+        
+
     }
 
     public function getArticlesPgn($data)

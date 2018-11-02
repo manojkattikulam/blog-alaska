@@ -21,14 +21,27 @@ class Pages extends Controller
         $number_of_pages = ceil($number_of_results/$results_per_page);
 
         // determine which page number visitor is currently on
-        if (!isset($_GET['page'])) {
-            $page = 1;
-        } else {
-            $page = $_GET['page'];
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+            $_GET = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        
+            if (isset($_GET['page']) && ($_GET['page'] <= $number_of_pages) && (intval($_GET['page']))) {
+
+                $page = $_GET['page'];
+    
+            } else {
+            
+                $page = 1;
+                
+            }
+
         }
 
         // determine the sql LIMIT starting number for the results on the displaying page
+        
         $this_page_first_result = ($page-1)*$results_per_page;
+       
 
         // retrieve selected results from database and display them on page
 
@@ -149,5 +162,7 @@ class Pages extends Controller
         $this->view('pages/showAll', $data);
 
     }
+
+   
 
 }

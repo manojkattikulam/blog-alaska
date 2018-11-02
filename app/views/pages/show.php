@@ -39,7 +39,7 @@
 
         <div class="form-group">
           <label for="pseudo">Pseudo: <sup>*</sup></label>
-          <input type="text" name="pseudo" class="form-control form-control-lg <?php echo (!empty($data['pseudo_err'])) ? 'is-invalid' : ''; ?>" value="<?php if (isset($data['pseudo'])) {echo $data['pseudo'];} else {echo '';}?>">
+          <input type="text" name="pseudo" class="form-control form-control-lg <?php echo (!empty($data['pseudo_err'])) ? 'is-invalid' : ''; ?>" value="<?php if (isset($data['pseudo'])) {echo $data['pseudo'];} else if(isset($_SESSION['user_name'])){echo $_SESSION['user_name']; } else {echo '';}?>">
             <span class="invalid-feedback"><?php echo $data['pseudo_err']; ?></span>
         </div>
 
@@ -47,7 +47,7 @@
 
          <div class="form-group">
             <label for="email">Email: <sup>*</sup></label>
-            <input type="email" name="email" class="form-control form-control-lg <?php echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?>" value="<?php if (isset($data['email'])) {echo $data['email'];} else {echo '';}?>">
+            <input type="email" name="email" class="form-control form-control-lg <?php echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?>" value="<?php if (isset($data['email'])) {echo $data['email'];} else if(isset($_SESSION['user_email'])){echo $_SESSION['user_email']; }else {echo '';}?>">
             <span class="invalid-feedback"><?php echo $data['email_err']; ?></span>
           </div>
 

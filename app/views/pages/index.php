@@ -38,9 +38,9 @@
       <div class="row ">
         <div class="col-md-8 col-md-offset-2 ">
       
-          <ul class="pagination">
+        <ul class="pagination">
             
-            <?php for ($page=1;$page<=$data['num_pages'];$page++) { ?>
+            <?php for ($page=1; $page<=$data['num_pages']; $page++) { ?>
             
             
 
