@@ -16,7 +16,7 @@ class Post
 
         return $results;
 
-        
+        $$results->closeCursor();
 
     }
 

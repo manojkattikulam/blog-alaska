@@ -21,22 +21,19 @@ class Pages extends Controller
         $number_of_pages = ceil($number_of_results/$results_per_page);
 
         // determine which page number visitor is currently on
-
-        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-
-            $_GET = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-        
+            
             if (isset($_GET['page']) && ($_GET['page'] <= $number_of_pages) && (intval($_GET['page']))) {
 
-                $page = $_GET['page'];
+                $page = (int)$_GET['page'];
+                $_SESSION['page_num'] = $page;
     
             } else {
-            
-                $page = 1;
+                unset($_SESSION['page_num']);
+                $page = (int)1;
                 
             }
 
-        }
+      
 
         // determine the sql LIMIT starting number for the results on the displaying page
         
@@ -46,13 +43,13 @@ class Pages extends Controller
         // retrieve selected results from database and display them on page
 
         $dataPages = [
-            'first_num' => $this_page_first_result, 
-            'last_num' => $results_per_page 
+            'first_num' => filter_var($this_page_first_result, FILTER_SANITIZE_STRING),
+            'last_num' => filter_var($results_per_page, FILTER_SANITIZE_STRING)
         ];
         $postsPgn = $this->postModel->getArticlesPgn($dataPages);
 
         $data = [
-            'title' => 'Billet simple pour Alaska',
+            'title' => 'Billet simple pour l\'Alaska',
             'description' => 'par Jean Forteroche',
             'posts' => $postsPgn,
             'num_pages' => $number_of_pages
@@ -82,20 +79,20 @@ class Pages extends Controller
 
             $data = [
 
-                'title' => 'Billet simple pour Alaska',
+                'title' => 'Billet simple pour l\'Alaska',
                 'description' => 'par Jean Forteroche',
 
-                'id' => $id,
-                'titre' => $post->titre,
-                'contenu' => $post->contenu,
-                'date' => $post->date_creation_fr,
-                'comments' => $cposts,
+                'id' => str_secur($id),
+                'titre' => str_secur($post->titre),
+                'contenu' => str_secur($post->contenu),
+                'date' => str_secur($post->date_creation_fr),
+                'comments' => str_secur($cposts),
 
-                'article_id' => $_POST['article_id'],
-                'pseudo' => $_POST['pseudo'],
-                'email' => $_POST['email'],
-                'commentaire' => $_POST['commentaire'],
-                'priority' => $priority,
+                'article_id' => str_secur($_POST['article_id']),
+                'pseudo' => str_secur($_POST['pseudo']),
+                'email' => str_secur($_POST['email']),
+                'commentaire' => str_secur($_POST['commentaire']),
+                'priority' => str_secur($priority),
                 'pseudo_err' => '',
                 'email_err' => '',
                 'commentaire_err' => ''];
@@ -132,7 +129,7 @@ class Pages extends Controller
         } else {
 
             $data = [
-                'title' => 'Billet simple pour Alaska',
+                'title' => 'Billet simple pour l\'Alaska',
                 'description' => 'par Jean Forteroche',
 
                 'id' => $id,

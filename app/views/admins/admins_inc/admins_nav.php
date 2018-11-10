@@ -9,7 +9,7 @@
       <a class="nav-link" href="<?php echo URLROOT; ?>/admins/edit">Modifier</a>
   </li>
   <li class="nav-item">
-  <a class="nav-link" href="<?php echo URLROOT; ?>/admins/comments">Commentaires(<span class="numCount"><?php echo $data['num_com']; ?></span>)</a>
+  <a class="nav-link" href="<?php echo URLROOT; ?>/admins/comments">Commentaires(<span class="numCount"><?php if($data['num_com'] < 1) { echo ''; } else {echo $data['num_com']; }; ?></span>)</a>
   </li>
   <li class="nav-item">
       <a class="nav-link" href="<?php echo URLROOT; ?>/users/logout">Logout</a>

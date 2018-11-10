@@ -68,7 +68,7 @@ class Admins extends Controller
                     flash('post_message', ' L\'article est ajouter');
                     redirect('admins/add');
                 } else {
-                    die('Something went wrong');
+                    die('Une erreur est survenu...');
                 }
 
             } else {

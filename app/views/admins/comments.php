@@ -11,7 +11,7 @@
   <div class="col-md-9">
 
   <div class=" mt-5">
-    <h1>Grée vos Commentaires</h1>
+    <h1>Gérez vos Commentaires</h1>
     <?php echo flash('post_message'); ?>
   </div>
 <table class="table table-bordered">
@@ -21,20 +21,24 @@
       <th scope="col">Pseudo</th>
       <th scope="col">Email</th>
       <th scope="col">Commentaires</th>
+      <th scope="col">Lien article</th>
       <th scope="col">Date</th>
       <th scope="col">Statut</th>
       <th scope="col">Priority</th>
       <th scope="col">Publier</th>
+     
       
       <th scope="col">Supprimer</th>
     </tr>
   </thead>
   <tbody>
+
   <?php foreach ($data['admin_cposts'] as $com): ?>
     <tr>
       <td><?php echo $com->comment_author; ?></td>
       <td><?php echo $com->comment_email; ?></td>
       <td><?php echo $com->comment_text; ?></td>
+      <td> <a href="<?php echo URLROOT; ?>/pages/show/<?php echo $com->posts_id; ?>"><?php echo $com->posts_id; ?></a></td>
       <td><?php echo $com->comment_date_fr; ?></td>
 
       <?php if ($com->comment_status == 'Publié') {?>

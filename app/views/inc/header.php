@@ -9,6 +9,10 @@
   <script src="https://cdn.ckeditor.com/ckeditor5/11.1.0/classic/ckeditor.js"></script>
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/style.css">
   <title><?php echo SITENAME; ?></title>
+  <meta name="description" content="<?php echo WEBSITE_DESCRIPTION; ?>">
+  <meta name="keywords" content="<?php echo WEBSITE_KEYWORDS; ?>">
+  <meta name="author" content="<?php echo WEBSITE_AUTHOR; ?>">
+  
 
 </head>
 <body>

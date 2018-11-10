@@ -1,5 +1,7 @@
 <?php require APPROOT . '/views/inc/header.php';?>
 
+
+
   <div class="jumbotron jumbotron-flud text-center">
     <h1 class="display-3"><?php echo $data['title']; ?></h1>
     <p class="lead"><?php echo $data['description']; ?></p>
@@ -11,9 +13,25 @@
 
 <?php flash('post_message');?>
 
+<div class="col-md-4 mb-3" >
 
-<button type="button" class="btn btn-success mb-3" onclick="goBack()"><i class="fa fa-backward"></i>&nbsp;Retour</button>
+<?php if(isset($_SESSION['page_num'])): ?>
 
+<form action="<?php echo URLROOT; ?>/index.php?page=<?php echo $_SESSION['page_num']; ?>" method="post">
+<button type="submit" class="btn btn-secondary"><i class="fa fa-chevron-circle-left"></i> RETOUR</button>
+</form>
+
+<?php else: ?>
+
+
+<button class="btn btn-secondary" onclick="window.history.go(-1)"><i class="fa fa-chevron-circle-left"></i> RETOUR</button>
+
+
+<?php endif; ?>
+
+
+
+</div>
 
 
   <div class="card card-body mb-3">
@@ -39,7 +57,7 @@
 
         <div class="form-group">
           <label for="pseudo">Pseudo: <sup>*</sup></label>
-          <input type="text" name="pseudo" class="form-control form-control-lg <?php echo (!empty($data['pseudo_err'])) ? 'is-invalid' : ''; ?>" value="<?php if (isset($data['pseudo'])) {echo $data['pseudo'];} else if(isset($_SESSION['user_name'])){echo $_SESSION['user_name']; } else {echo '';}?>">
+          <input type="text" name="pseudo" class="form-control form-control-lg <?php echo (!empty($data['pseudo_err'])) ? 'is-invalid' : ''; ?>" value="<?php if (isset($data['pseudo'])) {echo $data['pseudo'];} else {echo '';}?>">
             <span class="invalid-feedback"><?php echo $data['pseudo_err']; ?></span>
         </div>
 
@@ -47,7 +65,7 @@
 
          <div class="form-group">
             <label for="email">Email: <sup>*</sup></label>
-            <input type="email" name="email" class="form-control form-control-lg <?php echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?>" value="<?php if (isset($data['email'])) {echo $data['email'];} else if(isset($_SESSION['user_email'])){echo $_SESSION['user_email']; }else {echo '';}?>">
+            <input type="email" name="email" class="form-control form-control-lg <?php echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?>" value="<?php if (isset($data['email'])) {echo $data['email'];} else {echo '';}?>">
             <span class="invalid-feedback"><?php echo $data['email_err']; ?></span>
           </div>
 
