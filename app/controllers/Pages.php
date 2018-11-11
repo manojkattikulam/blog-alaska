@@ -82,17 +82,17 @@ class Pages extends Controller
                 'title' => 'Billet simple pour l\'Alaska',
                 'description' => 'par Jean Forteroche',
 
-                'id' => str_secur($id),
-                'titre' => str_secur($post->titre),
-                'contenu' => str_secur($post->contenu),
-                'date' => str_secur($post->date_creation_fr),
-                'comments' => str_secur($cposts),
+                'id' => $id,
+                'titre' => $post->titre,
+                'contenu' =>$post->contenu,
+                'date' => $post->date_creation_fr,
+                'comments' => $cposts,
 
-                'article_id' => str_secur($_POST['article_id']),
-                'pseudo' => str_secur($_POST['pseudo']),
-                'email' => str_secur($_POST['email']),
-                'commentaire' => str_secur($_POST['commentaire']),
-                'priority' => str_secur($priority),
+                'article_id' => $_POST['article_id'],
+                'pseudo' => $_POST['pseudo'],
+                'email' => $_POST['email'],
+                'commentaire' => $_POST['commentaire'],
+                'priority' => $priority,
                 'pseudo_err' => '',
                 'email_err' => '',
                 'commentaire_err' => ''];
@@ -146,20 +146,5 @@ class Pages extends Controller
 
     }
 
-    public function showAll(){
-
-        $all = $this->postModel->showAlls();
-
-        $data = [
-
-            'mixpost' => $all
-        ];
-
-
-        $this->view('pages/showAll', $data);
-
-    }
-
-   
 
 }

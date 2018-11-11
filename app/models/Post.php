@@ -8,6 +8,8 @@ class Post
         $this->db = new Database;
     }
 
+    // Get articles
+
     public function getPosts()
     {
         $this->db->query('SELECT posts_id, titre, contenu, DATE_FORMAT(date_creation, \'%d/%m/%Y\') AS date_creation_fr FROM posts ORDER BY date_creation DESC');
@@ -16,9 +18,12 @@ class Post
 
         return $results;
 
-        $$results->closeCursor();
+        $results->closeCursor();
+        $this->db = null;
 
     }
+
+    // Get articles for Pagination
 
     public function getArticlesPgn($data)
     {
@@ -28,7 +33,12 @@ class Post
 
         return $results;
 
+        $results->closeCursor();
+        $this->db = null;
+
     }
+
+    // Get article count for Pagination
 
     public function getArticlesCountPgn()
     {
@@ -38,7 +48,12 @@ class Post
 
         return $this->db->rowCount();
 
+        
+        $this->db = null;
+
     }
+
+    // Get article by ID
 
     public function getPostById($id)
     {
@@ -48,7 +63,12 @@ class Post
         $row = $this->db->single();
 
         return $row;
+
+        $row->closeCursor();
+        $this->db = null;
     }
+
+    // ADMIN:  ADD ARTICLE
 
     public function addPost($data)
     {
@@ -65,7 +85,10 @@ class Post
             return false;
         }
 
+        $this->db = null;
     }
+
+      // ADMIN:  UPDATE ARTICLE
 
     public function updatePost($data)
     {
@@ -83,7 +106,12 @@ class Post
             return false;
         }
 
+       
+        $this->db = null;
+
     }
+
+    // ADMIN:  DELETE ARTICLE
 
     public function deletePost($id)
     {
@@ -99,7 +127,11 @@ class Post
             return false;
         }
 
+        
+        $this->db = null;
     }
+
+    // GET COMMENTS BY ID
 
     public function getComments($id)
     {
@@ -114,7 +146,12 @@ class Post
 
         return $results;
 
+        $results->closeCursor();
+        $this->db = null;
+
     }
+
+    // ADD COMMENTS FRONT END
 
     public function addComments($data)
     {
@@ -135,8 +172,12 @@ class Post
             return false;
         }
 
+        
+        $this->db = null;
+
     }
 
+    // ADMIN: GET COUNT OF ARTICLES
     public function getNumPostsAdmin()
     {
         $this->db->query('SELECT * FROM posts');
@@ -145,8 +186,13 @@ class Post
 
         return $this->db->rowCount();
 
+        
+        $this->db = null;
+
     }
 
+
+    // ADMIN: GET COMMENTS
     public function getCommentsAdmin()
     {
 
@@ -156,7 +202,12 @@ class Post
 
         return $results;
 
+        $results->closeCursor();
+        $this->db = null;
+
     }
+
+    // ADMIN: GET COUNT OF COMMENTS
 
     public function getNumCommentsAdmin()
     {
@@ -166,10 +217,14 @@ class Post
 
         return $this->db->rowCount();
 
+        
+        $this->db = null;
+
     }
 
     
 
+    // ADMIN: GET COUNT OF PUBLISHED COMMENTS
 
     public function getNumCommentsPublierAdmin()
     {
@@ -182,8 +237,12 @@ class Post
 
         return $this->db->rowCount();
 
+        $this->db = null;
+
     }
 
+
+    // ADMIN: GET COUNT OF PRIORITY COMMENTS
 
     public function getNumCommentsPriorityAdmin()
     {
@@ -196,7 +255,11 @@ class Post
 
         return $this->db->rowCount();
 
+        $this->db = null;
+
     }
+
+    // ADMIN: DELETE COMMENTS BY ID
 
     public function deleteComment($id)
     {
@@ -212,7 +275,11 @@ class Post
             return false;
         }
 
+        $this->db = null;
+
     }
+
+    // ADMIN: PUBLISH COMMENT
 
     public function publierComment($id)
     {
@@ -230,25 +297,12 @@ class Post
             return false;
         }
 
+        
+        $this->db = null;
+
     }
 
  
-
-    public function showAlls(){
-
-        $this->db->query(
-            
-            'SELECT posts.titre, posts.contenu, comments.comment_author, comments.comment_text
-             FROM posts
-             INNER JOIN comments on posts.posts_id = comments.posts_id
-             ORDER BY comments.comment_author'
-        );
-
-        $results = $this->db->resultSet();
-
-        return $results;
-
-    }
 
 
 }

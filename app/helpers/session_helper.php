@@ -33,4 +33,4 @@ function isLoggedIn(){
     } else {
       return false;
     }
-  }
+}

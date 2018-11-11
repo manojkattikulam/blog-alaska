@@ -6,21 +6,7 @@
       $this->db = new Database;
     }
 
-    // Regsiter user
-    public function register($data){
-      $this->db->query('INSERT INTO users (name, email, password) VALUES(:name, :email, :password)');
-      // Bind values
-      $this->db->bind(':name', $data['name']);
-      $this->db->bind(':email', $data['email']);
-      $this->db->bind(':password', $data['password']);
-
-      // Execute
-      if($this->db->execute()){
-        return true;
-      } else {
-        return false;
-      }
-    }
+  
 
     // Login User
     public function login($email, $password){
@@ -35,6 +21,9 @@
       } else {
         return false;
       }
+
+      $this->db = null;
+
     }
 
     // Find user by email
@@ -51,5 +40,8 @@
       } else {
         return false;
       }
+
+      $this->db = null;
+      
     }
   }
